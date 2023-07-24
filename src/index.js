@@ -32,7 +32,7 @@ server.listen(port, () => {
 // Endpoints
 
 // get all recipes
-server.get('/api/recetas', async (req, res) => {
+server.get('/recetas', async (req, res) => {
   const select = 'SELECT * FROM recetas';
   const conn = await getConnection();
   const [result] = await conn.query(select);
@@ -45,7 +45,7 @@ server.get('/api/recetas', async (req, res) => {
 });
 
 // get recipe by id
-server.get('/api/recetas/:id', async (req, res) => {
+server.get('/recetas/:id', async (req, res) => {
   const recipeId = req.params.id;
   const select = 'SELECT * FROM recetas WHERE id = ?';
   const conn = await getConnection();
@@ -57,7 +57,7 @@ server.get('/api/recetas/:id', async (req, res) => {
 });
 
 // add new recipe
-server.post('/api/recetas', async (req, res) => {
+server.post('/recetas', async (req, res) => {
   const { nombre, ingredientes, instrucciones } = req.body;
   try {
     if (nombre !== '' && ingredientes !== '' && instrucciones !== '') {
@@ -84,7 +84,7 @@ server.post('/api/recetas', async (req, res) => {
 });
 
 // update recipe
-server.put('/api/recetas/:id', async (req, res) => {
+server.put('/recetas/:id', async (req, res) => {
   const recipeId = req.params.id;
   const { nombre, ingredientes, instrucciones } = req.body;
   try {
@@ -104,7 +104,7 @@ server.put('/api/recetas/:id', async (req, res) => {
 });
 
 // delete recipe
-server.delete('/api/recetas/:id', async (req, res) => {
+server.delete('/recetas/:id', async (req, res) => {
   const recipeId = req.params.id;
   try {
     const deleteQ = 'DELETE FROM recetas WHERE id = ?';
